@@ -6,7 +6,7 @@
 	"version":"1.0.0",
 	"description":"Special MIDI Module for the Behringer X-Touch Universal",
 	"url":"https://github.com/iniqmyers/XTouch-Universal-Chataigne-Module",
-	"downloadURL":"https://github.com/benkuper/Launchkey-Mini-Chataigne-Module/archive/master.zip",
+	"downloadURL":"https://github.com/iniqmyers/XTouch-Universal-Chataigne-Module/archive/master.zip",
 	
 	"hasInput":true,
 	"hasOutput":true, 
@@ -24,7 +24,7 @@
 
 	"defaults":
 	{		
-		"devices":["X-Touch INT", "X-Touch INT"],
+		"devices":["X-Touch", "X-Touch"],
 		"autoAdd":false
 	},
 
