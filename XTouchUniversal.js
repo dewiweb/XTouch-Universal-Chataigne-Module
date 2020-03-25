@@ -82,7 +82,13 @@ function init()
         //Pulse VU Meters at current value
         local.sendChannelPressure(counter+1,local.values.strips.getChild('_'+(counter+1)).meter.get()*14+(16*(counter)));
         //Init POT LEDs
-        local.sendCC(0,0x30+(counter), (local.values.strips.getChild('_'+(counter+1)).potVal.get()*12)+local.values.strips.getChild('_'+(counter+1)).potMode.getData());
+        if((local.values.strips.getChild('_'+(counter+1)).potMode.get()/16==3)||(local.values.strips.getChild('_'+(counter+1)).potMode.get()/16==7)){
+                            
+            local.sendCC(0,0x30+index,(local.values.strips.getChild('_'+(counter+1)).potVal.get()*6)+(local.values.strips.getChild('_'+(counter+1)).potMode.getData()));
+        }else{
+            local.sendCC(0,0x30+counter,(local.values.strips.getChild('_'+(counter+1)).potVal.get()*11)+(local.values.strips.getChild('_'+(counter+1)).potMode.getData()));
+        }
+       // local.sendCC(0,0x30+(counter), (local.values.strips.getChild('_'+(counter+1)).potVal.get()*12)+local.values.strips.getChild('_'+(counter+1)).potMode.getData());
         //Init Select LEDs
         local.sendNoteOn(1,counter+22,local.values.strips.getChild('_'+(counter+1)).select.getData());
          //Calculate Top Scribble Strip Array
