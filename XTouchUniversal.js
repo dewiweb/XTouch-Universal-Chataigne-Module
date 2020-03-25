@@ -82,9 +82,8 @@ function init()
         //Pulse VU Meters at current value
         local.sendChannelPressure(counter+1,local.values.strips.getChild('_'+(counter+1)).meter.get()*14+(16*(counter)));
         //Init POT LEDs
-        if((local.values.strips.getChild('_'+(counter+1)).potMode.get()/16==3)||(local.values.strips.getChild('_'+(counter+1)).potMode.get()/16==7)){
-                            
-            local.sendCC(0,0x30+index,(local.values.strips.getChild('_'+(counter+1)).potVal.get()*6)+(local.values.strips.getChild('_'+(counter+1)).potMode.getData()));
+        if(((local.values.strips.getChild('_'+(counter+1)).potMode.get()-1)/16==3)||((local.values.strips.getChild('_'+(counter+1)).potMode.get()-1)/16==7)){     
+            local.sendCC(0,0x30+index,(local.values.strips.getChild('_'+(counter+1)).potVal.get()*5)+(local.values.strips.getChild('_'+(counter+1)).potMode.getData()));
         }else{
             local.sendCC(0,0x30+counter,(local.values.strips.getChild('_'+(counter+1)).potVal.get()*11)+(local.values.strips.getChild('_'+(counter+1)).potMode.getData()));
         }
@@ -225,9 +224,9 @@ function moduleValueChanged(value)
                     if(value.name=="potVal"||value.name=="potMode"){
                         index = parseInt(value.getParent().name.substring(1,2))-1;
                         script.log(local.values.strips.getChild('_'+(index+1)).potMode.get()/16);
-                        if((local.values.strips.getChild('_'+(index+1)).potMode.get()/16==3)||(local.values.strips.getChild('_'+(index+1)).potMode.get()/16==7)){
+                        if(((local.values.strips.getChild('_'+(index+1)).potMode.get()-1)/16==3)||((local.values.strips.getChild('_'+(index+1)).potMode.get()-1)/16==7)){
                             
-                            local.sendCC(0,0x30+index,(local.values.strips.getChild('_'+(index+1)).potVal.get()*6)+(local.values.strips.getChild('_'+(index+1)).potMode.getData()));
+                            local.sendCC(0,0x30+index,(local.values.strips.getChild('_'+(index+1)).potVal.get()*5)+(local.values.strips.getChild('_'+(index+1)).potMode.getData()));
                         }else{
                             local.sendCC(0,0x30+index,(local.values.strips.getChild('_'+(index+1)).potVal.get()*11)+(local.values.strips.getChild('_'+(index+1)).potMode.getData()));
                         }
